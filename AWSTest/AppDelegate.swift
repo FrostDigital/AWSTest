@@ -73,11 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         print("userInfo: \(userInfo)")
     }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        print("userInfo: \(userInfo)")
-    }
-    
+        
     func mainViewController() -> ViewController? {
         let rootViewController = self.window!.rootViewController
         if rootViewController is ViewController {
