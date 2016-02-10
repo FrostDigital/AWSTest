@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let notificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Badge, UIUserNotificationType.Sound, UIUserNotificationType.Alert], categories: nil)
@@ -124,7 +123,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             return nil
         })
-
     }
+    
+    //MARK: Amazon SNS Topic Subscription methods
+    
+    func subscribeToTopic(topicArn: String!) {
+        let sns = AWSSNS.defaultSNS()
+        let request = AWSSNSSubscribeInput()
+        request.endpoint = NSUserDefaults.standardUserDefaults().stringForKey(kEndpointArn)
+        request.topicArn = topicArn
+        request.protocols = "application"
+        sns.subscribe(request).continueWithExecutor(AWSExecutor.mainThreadExecutor(),
+            withBlock: { (task: AWSTask!) -> AnyObject! in
+                if task.error != nil {
+                    print("Error: \(task.error)")
+                } else {
+                    NSUserDefaults.standardUserDefaults().setObject((task.result as! AWSSNSSubscribeResponse).subscriptionArn, forKey: topicArn)
+                    self.mainViewController()?.updateTopicsUI()
+                }
+                return nil
+        })
+    }
+    
+    func unsubscribeFromTopic(topicArn: String!) {
+        let sns = AWSSNS.defaultSNS()
+        let request = AWSSNSUnsubscribeInput()
+        request.subscriptionArn = NSUserDefaults.standardUserDefaults().stringForKey(topicArn)
+        sns.unsubscribe(request).continueWithExecutor(AWSExecutor.mainThreadExecutor(),
+            withBlock: { (task: AWSTask!) -> AnyObject! in
+                if task.error != nil {
+                    print("Error: \(task.error)")
+                } else {
+                    NSUserDefaults.standardUserDefaults().removeObjectForKey(topicArn)
+                    self.mainViewController()?.updateTopicsUI()
+                }
+                return nil
+        })
+    }
+
 }
 

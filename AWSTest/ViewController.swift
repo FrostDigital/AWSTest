@@ -10,8 +10,6 @@ import UIKit
 
 let kDeviceToken = "deviceToken"
 let kEndpointArn = "endpointArn"
-let kAIKSubscribed = "aikSubscribed"
-let kDIFSubscribed = "difSubscribed"
 
 class ViewController: UIViewController {
     @IBOutlet weak var deviceToken: UILabel?
@@ -39,19 +37,39 @@ class ViewController: UIViewController {
     }
     
     func updateTopicsUI() {
-        aikSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey(kAIKSubscribed) ?? false
-        difSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey(kDIFSubscribed) ?? false
+        aikSwitch?.on = isSubscribedToTopic(SNSTopicAIKArn)
+        difSwitch?.on = isSubscribedToTopic(SNSTopicDIFArn)
     }
     
     @IBAction private func switchAIK() {
-        if (aikSwitch?.on != NSUserDefaults.standardUserDefaults().boolForKey(kAIKSubscribed)) {
-            print("Switch AIK: ", aikSwitch?.on)
+        if (aikSwitch?.on != isSubscribedToTopic(SNSTopicAIKArn)) {
+            print("Switch AIK: \(aikSwitch?.on)")
+            if aikSwitch != nil {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                if aikSwitch!.on {
+                    appDelegate.subscribeToTopic(SNSTopicAIKArn)
+                } else {
+                    appDelegate.unsubscribeFromTopic(SNSTopicAIKArn)
+                }
+            }
         }
     }
 
     @IBAction private func switchDIF() {
-        if (difSwitch?.on != NSUserDefaults.standardUserDefaults().boolForKey(kDIFSubscribed)) {
-            print("Switch DIF: ", difSwitch?.on)
+        if (difSwitch?.on != isSubscribedToTopic(SNSTopicDIFArn)) {
+            print("Switch DIF: \(difSwitch?.on)")
+            if difSwitch != nil {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                if difSwitch!.on {
+                    appDelegate.subscribeToTopic(SNSTopicDIFArn)
+                } else {
+                    appDelegate.unsubscribeFromTopic(SNSTopicDIFArn)
+                }
+            }
         }
+    }
+    
+    private func isSubscribedToTopic(topicArn: String!) -> Bool {
+        return NSUserDefaults.standardUserDefaults().objectForKey(topicArn) != nil
     }
 }
