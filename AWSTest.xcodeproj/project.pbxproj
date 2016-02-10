@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0342D1DF3F359B38297859CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A519B840DA703DB4F1C3E59A /* libPods.a */; };
 		458EFE4C1C22C4A20084FE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EFE4B1C22C4A20084FE99 /* AppDelegate.swift */; };
 		458EFE4E1C22C4A20084FE99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EFE4D1C22C4A20084FE99 /* ViewController.swift */; };
 		458EFE511C22C4A20084FE99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458EFE4F1C22C4A20084FE99 /* Main.storyboard */; };
 		458EFE531C22C4A20084FE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458EFE521C22C4A20084FE99 /* Assets.xcassets */; };
 		458EFE561C22C4A20084FE99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458EFE541C22C4A20084FE99 /* LaunchScreen.storyboard */; };
 		45F466021C32E007005A5376 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F466011C32E007005A5376 /* Constants.swift */; };
-		BF83DF2920D4C4CB4AC29338 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48063E4A6F3E373DBFA647CD /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		458EFE551C22C4A20084FE99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458EFE571C22C4A20084FE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F466011C32E007005A5376 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		48063E4A6F3E373DBFA647CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A519B840DA703DB4F1C3E59A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCC02CCC82F9003B9D22AE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF83DF2920D4C4CB4AC29338 /* libPods.a in Frameworks */,
+				0342D1DF3F359B38297859CB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 		D5DF645D9835FD001AD75187 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				48063E4A6F3E373DBFA647CD /* libPods.a */,
+				A519B840DA703DB4F1C3E59A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,6 +254,7 @@
 /* Begin XCBuildConfiguration section */
 		458EFE581C22C4A20084FE99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BED2CCB7D6F9DBB5EB1336D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -299,6 +300,7 @@
 		};
 		458EFE591C22C4A20084FE99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBCC02CCC82F9003B9D22AE7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

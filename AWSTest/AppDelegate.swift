@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSSNS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -88,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: Amazon SNS related methods
     
-    func registerForSNSWithDeviceToken(deviceToken: String) {
+    func registerForSNSWithDeviceToken(deviceToken: String) {        
         let sns = AWSSNS.defaultSNS()
         let request = AWSSNSCreatePlatformEndpointInput()
         request.token = deviceToken
