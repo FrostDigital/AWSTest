@@ -8,6 +8,11 @@
 
 import UIKit
 
+let kDeviceToken = "deviceToken"
+let kEndpointArn = "endpointArn"
+let kAIKSubscribed = "aikSubscribed"
+let kDIFSubscribed = "difSubscribed"
+
 class ViewController: UIViewController {
     @IBOutlet weak var deviceToken: UILabel?
     @IBOutlet weak var endpointArn: UILabel?
@@ -21,8 +26,8 @@ class ViewController: UIViewController {
     }
 
     func displayDeviceInfo() {
-        deviceToken?.text = NSUserDefaults.standardUserDefaults().stringForKey("deviceToken") ?? "N/A"
-        endpointArn?.text = NSUserDefaults.standardUserDefaults().stringForKey("endpointArn") ?? "N/A"
+        deviceToken?.text = NSUserDefaults.standardUserDefaults().stringForKey(kDeviceToken) ?? "N/A"
+        endpointArn?.text = NSUserDefaults.standardUserDefaults().stringForKey(kEndpointArn) ?? "N/A"
     }
     
     func displayUserAction(action: NSString?) {
@@ -34,15 +39,19 @@ class ViewController: UIViewController {
     }
     
     func updateTopicsUI() {
-        aikSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey("aikSubscribed") ?? false
-        difSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey("difSubscribed") ?? false
+        aikSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey(kAIKSubscribed) ?? false
+        difSwitch?.on = NSUserDefaults.standardUserDefaults().boolForKey(kDIFSubscribed) ?? false
     }
     
     @IBAction private func switchAIK() {
-        print("Switch AIK: ", aikSwitch?.on)
+        if (aikSwitch?.on != NSUserDefaults.standardUserDefaults().boolForKey(kAIKSubscribed)) {
+            print("Switch AIK: ", aikSwitch?.on)
+        }
     }
 
     @IBAction private func switchDIF() {
-        print("Switch DIF: ", difSwitch?.on)
+        if (difSwitch?.on != NSUserDefaults.standardUserDefaults().boolForKey(kDIFSubscribed)) {
+            print("Switch DIF: ", difSwitch?.on)
+        }
     }
 }

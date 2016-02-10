@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString:"<>"))
             .stringByReplacingOccurrencesOfString(" ", withString: "")
         print("deviceTokenString: \(deviceTokenString)")
-        NSUserDefaults.standardUserDefaults().setObject(deviceTokenString, forKey: "deviceToken")
+        NSUserDefaults.standardUserDefaults().setObject(deviceTokenString, forKey: kDeviceToken)
         self.mainViewController()?.displayDeviceInfo()
 
         self.registerForSNSWithDeviceToken(deviceTokenString)
@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 let createEndpointResponse = task.result as! AWSSNSCreateEndpointResponse
                 print("endpointArn: \(createEndpointResponse.endpointArn)")
-                NSUserDefaults.standardUserDefaults().setObject(createEndpointResponse.endpointArn, forKey: "endpointArn")
+                NSUserDefaults.standardUserDefaults().setObject(createEndpointResponse.endpointArn, forKey: kEndpointArn)
                 self.mainViewController()?.displayDeviceInfo()
                 
                 self.enableEndpointWithARN(createEndpointResponse.endpointArn)
